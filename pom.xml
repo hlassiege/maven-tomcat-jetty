@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>com.developpez.hugo</groupId>
+  <version>1.0-SNAPSHOT</version>
+  
+  <artifactId>developpez-pom-parent</artifactId>
+  <packaging>pom</packaging>
+  
+  <modules>
+	<module>1.developpez-webapp</module>
+	<module>2.developpez-webapp-jaxrs</module>
+	<module>3.developpez-webapp-jndi</module>
+    <module>4.developpez-webapp-integration</module>
+	<module>5.developpez-webapp-jsp</module>
+  </modules>
+</project>

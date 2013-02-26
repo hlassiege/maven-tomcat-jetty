@@ -1,0 +1,34 @@
+<Server port="8005" shutdown="SHUTDOWN">
+    <GlobalNamingResources>
+        <!-- Used by Manager webapp -->
+        <Resource name="UserDatabase" auth="Container"
+                  type="org.apache.catalina.UserDatabase" description="User database that can be updated and saved"
+                  factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+                  pathname="conf/tomcat-users.xml" />
+        <Resource name="jdbc/myDb" auth="Container"
+                  type="javax.sql.DataSource" driverClassName="org.h2.Driver"
+                  url="jdbc:h2:target/data;MODE=PostgreSQL;DB_CLOSE_DELAY=-1"
+                  username="sa" password="sa" maxActive="10" maxIdle="2"
+                />
+
+    </GlobalNamingResources>
+    <Service name="Catalina">
+        <Connector port="8080" protocol="HTTP/1.1"
+                   connectionTimeout="20000" />
+
+        <Engine name="Catalina" defaultHost="localhost">
+            <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+                   resourceName="UserDatabase" />
+            <Host appBase="webapps" autoDeploy="false" deployXML="true" name="localhost">
+                <Context cachingAllowed="true" cookies="true" crossContext="false"
+                         displayName="${project.artifactId}"
+                         docBase="${project.build.directory}\${project.build.finalName}"
+                         path="/${project.artifactId}"
+                         privileged="false" reloadable="false" swallowOutput="false"
+                         useNaming="true">
+                    <ResourceLink global="jdbc/myDb" name="jdbc/myDb" type="javax.sql.DataSource" />
+                </Context>
+            </Host>
+        </Engine>
+    </Service>
+</Server>
